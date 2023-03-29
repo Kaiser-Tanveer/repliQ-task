@@ -1,0 +1,18 @@
+[
+    {
+        "category_name": "phones",
+        "img": "https://i.ibb.co/v4shgJx/Mmart-Phone.png"
+    },
+    {
+        "category_name": "tablets",
+        "img": "https://i.ibb.co/9s34MQt/Tablet.png"
+    },
+    {
+        "category_name": "laptops",
+        "img": "https://i.ibb.co/F5gCTBw/Laptop.png"
+    },
+    {
+        "category_name": "watches",
+        "img": "https://i.ibb.co/WKrDZgs/Watch.png"
+    }
+]
