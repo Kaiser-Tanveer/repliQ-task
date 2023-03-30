@@ -11,7 +11,8 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home />
+                element: <Home />,
+                loader: async () => await fetch("http://localhost:5000/categories")
             },
             {
                 path: '/logIn',
