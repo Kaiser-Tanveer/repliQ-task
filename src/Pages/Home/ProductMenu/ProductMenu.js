@@ -18,11 +18,11 @@ const ProductMenu = () => {
                     products.map(product =>
                         <Link
                             key={product._id}
-                            to={`allProducts/${product.category_name}`}
+                            to={`/products/${product.category_name}`}
                             className='lg:flex shadow-lg hover:scale-110 bg-gradient-to-r from-sky-400 to-pink-400 justify-center md:justify-between items-center w-full px-6 rounded-md lg:h-24 duration-500'
                         >
                             <div>
-                                <img src={product.img} alt="" className='w-full h-14 md:p-0 md:h-24' />
+                                <img src={product.img} alt="productImg" className='w-full h-14 md:p-0 md:h-24' />
                             </div>
                             <div>
                                 <h2 className='text-xl text-center hidden md:block font-semibold'>{product.category_name}</h2>
