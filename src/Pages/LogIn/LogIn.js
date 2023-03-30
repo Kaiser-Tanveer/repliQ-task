@@ -58,7 +58,7 @@ const LogIn = () => {
                                 "flex w-full items-center justify-center h-12 px-6 text-sm font-semibold rounded bg-pink-500 text-gray-800 uppercase">Login</button>
                         </div>
                         <div className="flex justify-center mt-6 space-x-2 text-xs">
-                            <p className="text-gray-600">New to T-Task? Please <Link className='link-hover' to='/register'>Register</Link></p>
+                            <p className="text-gray-600">New to RepliQ-Task? Please <Link className='link-hover' to='/register'>Register</Link></p>
                         </div>
                     </form>
                 </div>

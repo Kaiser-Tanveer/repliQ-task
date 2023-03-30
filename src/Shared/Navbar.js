@@ -36,7 +36,7 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <Link className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-sky-500 lg:ml-5">RQ Shop</Link>
+                <Link className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-sky-500 lg:ml-5">RQ Task</Link>
             </div>
             <div className="hidden lg:flex items-center">
                 <ul className="menu text-base-content menu-horizontal">
