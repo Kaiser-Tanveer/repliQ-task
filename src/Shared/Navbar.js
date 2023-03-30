@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { HiMenu, HiOutlineHome, HiOutlineShoppingCart } from 'react-icons/hi';
-// import { AuthContext } from '../../Contexts/AuthContext/AuthProvider';
+import { AuthContext } from '../Contexts/AuthContext/AuthProvider';
 
 const Navbar = () => {
-    // const { user, logOut } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     // Logout Handler 
     const signOutHandler = () => {
-        // logOut()
-        //     .then(() => { })
-        //     .catch(err => console.error(err));
+        logOut()
+            .then(() => { })
+            .catch(err => console.error(err));
     }
 
     // Creaing variable for the menu 
@@ -36,7 +36,7 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <Link className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-sky-500 lg:ml-5">RQ Task</Link>
+                <Link className="text-2xl font-semibold text-sky-500 lg:ml-5">RQ Task</Link>
             </div>
             <div className="hidden lg:flex items-center">
                 <ul className="menu text-base-content menu-horizontal">
@@ -44,20 +44,16 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <div className='bg-gradient-to-r from-info to-error p-[3px] rounded-lg hover:scale-110'>
-                    <div className='bg-gray-100 p-1 rounded-md'>
-                        {
-                            // user ?
-                            <Link onClick={signOutHandler} className='flex text-xl font-semibold text-transparent bg-gradient-to-r bg-clip-text from-error to-gray-500 items-center'>
-                                Logout
-                            </Link>
-                            // :
-                            // <Link to='/register' className='flex text-xl font-semibold text-transparent bg-gradient-to-r bg-clip-text from-info to-primary items-center'>
-                            //     Register
-                            // </Link>
-                        }
-                    </div>
-                </div>
+                {
+                    user ?
+                        <Link onClick={signOutHandler} className='flex bg-gray-100 rounded-md py-1 px-3 text-xl font-semibold text-pink-500 hover:bg-pink-400 items-center border-[3px] border-pink-500 hover:border-gray-200 hover:text-gray-200 hover:scale-110 duration-500'>
+                            Logout
+                        </Link>
+                        :
+                        <Link to='/reg' className='flex text-xl font-semibold py-1 px-3 bg-sky-500 rounded-lg text-gray-100 items-center border-[3px] border-gray-100 hover:border-sky-500 hover:bg-gray-200 hover:text-sky-500 hover:scale-110 duration-500'>
+                            Register
+                        </Link>
+                }
             </div>
         </div>
     );

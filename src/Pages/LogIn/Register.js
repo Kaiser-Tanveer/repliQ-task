@@ -12,7 +12,6 @@ const Register = () => {
     const [err, setErr] = useState('');
     const navigate = useNavigate();
     const imgSec = process.env.REACT_APP_ImgKey;
-    console.log(imgSec);
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     // const { createUser } = useContext(AuthContext);
@@ -38,7 +37,6 @@ const Register = () => {
                             const userImg = imgData.data.url;
                             updateUser(data.name, userImg)
                                 .then(() => {
-                                    console.log("Updated");
                                     const userInfo = {
                                         displayName: data.name,
                                         email: data.email,

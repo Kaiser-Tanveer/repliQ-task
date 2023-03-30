@@ -3,13 +3,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { Zoom } from 'react-reveal';
 import { FaUserAlt } from 'react-icons/fa';
-// import { setAuthToken } from '../Components/setAuthToken';
-// import useTitle from '../Components/myHook/useTitle';
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../Contexts/AuthContext/AuthProvider';
 
 const LogIn = () => {
-    // useTitle('Login');
-    // const { signIn } = useContext(AuthContext);
+    const { signIn } = useContext(AuthContext);
     const location = useLocation();
     const from = location?.state?.form?.pathname || '/';
     const navigate = useNavigate();
@@ -18,17 +16,16 @@ const LogIn = () => {
     // Login Handler 
     const submitHandler = data => {
         console.log(data);
-        // signIn(data.email, data.password)
-        //     .then(result => {
-        //         const user = result.user;
-        //         console.log(user);
-        //         setAuthToken(user);
-        //         if (result) {
-        //             toast.success('Logged in Successfully!');
-        //             navigate(from, { replace: true });
-        //         }
-        // //     })
-        //     .catch (err => console.error(err));
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                if (result) {
+                    toast.success('Logged in Successfully!');
+                    navigate(from, { replace: true });
+                }
+            })
+            .catch(err => console.error(err));
     }
     return (
         <div className='lg:w-5/6 my-20 lg:my-32 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center'>
