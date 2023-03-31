@@ -22,7 +22,7 @@ const LogIn = () => {
                 console.log(user);
                 if (result) {
                     toast.success('Logged in Successfully!');
-                    navigate(from, { replace: true });
+                    navigate('/');
                 }
             })
             .catch(err => console.error(err));

@@ -1,11 +1,11 @@
 import React from 'react';
-import Banner from './Banner/Banner';
-import ProductMenu from './ProductMenu/ProductMenu';
+import BannerSlider from './BannerSlider';
+import ProductMenu from './ProductMenu';
 
 const Home = () => {
     return (
-        <div>
-            <Banner />
+        <div className='pb-20'>
+            <BannerSlider />
             <ProductMenu />
         </div>
     );

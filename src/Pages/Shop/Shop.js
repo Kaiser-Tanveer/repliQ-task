@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link, useLoaderData, useNavigation } from 'react-router-dom';
-import { FaInfo } from 'react-icons/fa';
 import Spinner from '../../Shared/Spinner/Spinner';
+import { FaInfo } from 'react-icons/fa';
 
-const Products = () => {
+const Shop = () => {
     const navigation = useNavigation();
-    const products = useLoaderData();
+    const products = useLoaderData([]);
 
     if (navigation.state === "loading") {
         return <Spinner />
     }
     return (
-        <div className='container mx-auto grid md:grid-cols-2 gap-10 relative py-20'>
+        <div className='container mx-auto grid md:grid-cols-2 gap-y-10 relative py-20 items-center'>
             {
                 products.map(product =>
                     <div
@@ -34,4 +34,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default Shop;

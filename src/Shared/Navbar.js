@@ -5,6 +5,7 @@ import { AuthContext } from '../Contexts/AuthContext/AuthProvider';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    console.log(user);
 
     // Logout Handler 
     const signOutHandler = () => {
@@ -18,7 +19,7 @@ const Navbar = () => {
         <li><NavLink to='/' className={({ isActive }) =>
             isActive ? 'flex rounded-md bg-info items-center text-xl m-2 lg:text-base' : undefined
         }><HiOutlineHome className='lg:hidden' /><span className='ml-2'>Home</span></NavLink></li>
-        <li><NavLink to='/products' className={({ isActive }) =>
+        <li><NavLink to='/shop' className={({ isActive }) =>
             isActive ? 'flex rounded-md bg-info items-center text-xl m-2 lg:text-base' : undefined
         }><HiOutlineHome className='lg:hidden' /><span className='ml-2'>Shop</span></NavLink></li>
         <li><NavLink to='/cart' className={({ isActive }) =>

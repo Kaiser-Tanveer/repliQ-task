@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-hot-toast';
 import { Zoom } from 'react-reveal';
 import { FaUserCircle } from 'react-icons/fa';
-import { useContext } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const Register = () => {
     const { createUser, updateUser } = useContext(AuthContext);
@@ -14,7 +13,6 @@ const Register = () => {
     const imgSec = process.env.REACT_APP_ImgKey;
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-    // const { createUser } = useContext(AuthContext);
     const [disable, setDisable] = useState(false);
 
     // Registration Handler 
@@ -41,18 +39,31 @@ const Register = () => {
                                         displayName: data.name,
                                         email: data.email,
                                         photoURL: userImg,
-                                        phone: data.phone,
+                                        phoneNumber: data.phone,
                                     }
                                     console.log(userInfo);
+
+                                    // Storing user on DB 
+                                    fetch('http://localhost:5000/users', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-type': 'application/json'
+                                        },
+                                        body: JSON.stringify(userInfo)
+                                    })
+                                        .then(data => {
+                                            console.log(data);
+                                            toast.success('User added to DB');
+                                            navigate('/');
+                                        })
+                                        .catch(err => {
+                                            toast.error(err.message)
+                                        });
                                 })
                                 .catch(err => console.error(err.message));
                             console.log(updateUser());
                         }
                     });
-                if (result) {
-                    toast.success('Registered Successfully!');
-                    navigate('/');
-                }
             })
             .catch(error => {
                 setErr(error.message);
@@ -75,9 +86,9 @@ const Register = () => {
                 </div>
             </Zoom>
             <Zoom>
-                <div className="bg-info w-5/6 lg:w-3/4 mx-auto flex items-center relative justify-center text-center text-gray-800 rounded-lg shadow-lg shadow-error-focus">
-                    <form onSubmit={handleSubmit(submitHandler)} className="flex flex-col w-full max-w-lg p-12 shadow-lg shadow-error text-gray-800 ng-untouched ng-pristine ng-valid rounded-lg">
-                        <FaUserCircle className='absolute -top-12 left-28 lg:left-36 bg-info rounded-full text-8xl' />
+                <div className="w-5/6 lg:w-3/4 mx-auto flex items-center relative justify-center text-center text-gray-800 rounded-lg">
+                    <form onSubmit={handleSubmit(submitHandler)} className="bg-sky-500 flex flex-col w-full max-w-lg p-12 shadow-lg shadow-error text-gray-800 ng-untouched ng-pristine ng-valid rounded-lg">
+                        <FaUserCircle className='absolute -top-12 left-28 md:left-[42%] lg:left-36 bg-sky-500 rounded-full text-8xl' />
                         <label className="self-start text-xs font-semibold">Your Name</label>
                         <input
                             {...register("name", { required: "Name is required." })}
