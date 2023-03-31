@@ -16,8 +16,7 @@ const AdminOrders = () => {
 
     // Remove Handler 
     const removeHandler = id => {
-        console.log(id);
-        const proceed = window.confirm('Sure to delete this card');
+        const proceed = window.confirm('Sure to delete this card!!!');
         if (proceed) {
             fetch(`http://localhost:5000/dashboard/orders?id=${id}`, {
                 method: 'DELETE'
@@ -32,7 +31,7 @@ const AdminOrders = () => {
                     toast.error(err.message)
                 });
         }
-    }
+    };
 
     if (isLoading) {
         return <Spinner />

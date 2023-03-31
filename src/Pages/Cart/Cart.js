@@ -4,26 +4,23 @@ import { Table, Tbody, Th, Thead, Tr } from 'react-super-responsive-table';
 import { AuthContext } from '../../Contexts/AuthContext/AuthProvider';
 import Spinner from '../../Shared/Spinner/Spinner';
 import SingleCart from './SingleCart';
+import { useQuery } from '@tanstack/react-query';
 
 const Cart = () => {
     const { user } = useContext(AuthContext);
-    console.log(user?.email);
-    const [bookings, setBookings] = useState([]);
-    const [loading, setLoading] = useState(false);
 
 
     // fetching data according to mail query 
-    useEffect(() => {
-        if (!loading) {
-            fetch(`http://localhost:5000/myBookings?email=${user?.email}`)
-                .then(res => res.json())
-                .then(data => {
-                    setBookings(data);
-                })
+    const { isLoading, refetch, data: bookings = [] } = useQuery({
+        queryKey: ["bookings"],
+        queryFn: async () => {
+            const res = fetch(`http://localhost:5000/myBookings?email=${user?.email}`);
+            const data = (await res).json();
+            return data;
         }
-    }, [user?.email, loading]);
+    })
 
-    if (loading) {
+    if (isLoading) {
         return <Spinner />
     }
     return (
@@ -45,7 +42,7 @@ const Cart = () => {
                             bookings.map(booking => <SingleCart
                                 key={booking._id}
                                 booking={booking}
-                                setLoading={setLoading}
+                                refetch={refetch}
                             />)
                         }
                     </Tbody>

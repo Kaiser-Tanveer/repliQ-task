@@ -4,12 +4,11 @@ import { FaTrashAlt } from 'react-icons/fa';
 import { Td, Tr } from 'react-super-responsive-table';
 import { AuthContext } from '../../Contexts/AuthContext/AuthProvider';
 
-const SingleCart = ({ booking, setLoading }) => {
+const SingleCart = ({ booking, refetch }) => {
     const { user } = useContext(AuthContext);
     const { img, productName, price, email, _id } = booking;
 
     const removeHandler = id => {
-        setLoading(true);
         const proceed = window.confirm('Sure to delete this item!!!');
         if (proceed) {
             fetch(`http://localhost:5000/bookings?id=${id}`, {
@@ -20,11 +19,9 @@ const SingleCart = ({ booking, setLoading }) => {
                     console.log(data);
                     if (data.deletedCount > 0) {
                         toast.success('Product Deleted Successfully!!');
-                        setLoading(false);
+                        refetch();
                     }
                 })
-        } else {
-            setLoading(false);
         }
     }
     return (

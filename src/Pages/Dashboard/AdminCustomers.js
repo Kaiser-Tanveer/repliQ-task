@@ -3,6 +3,7 @@ import React from 'react';
 import Spinner from '../../Shared/Spinner/Spinner';
 import { Table, Tbody, Td, Th, Thead, Tr } from 'react-super-responsive-table';
 import { FaTrashAlt } from 'react-icons/fa';
+import { toast } from 'react-hot-toast';
 
 const AdminCustomers = () => {
     const { isLoading, refetch, data: users = [] } = useQuery({
@@ -14,19 +15,35 @@ const AdminCustomers = () => {
         }
     });
 
-    // Remove Customers 
+    // Remove Handler 
     const removeHandler = id => {
-        console.log(id);
+        const proceed = window.confirm('Sure to delete this User!!!');
+        if (proceed) {
+            fetch(`http://localhost:5000/dashboard/users?id=${id}`, {
+                method: 'DELETE'
+            })
+                .then(data => {
+                    console.log(data);
+                    if (data.status === 200) {
+                        toast.success('Deleted Successfully!!!');
+                        refetch();
+                    }
+                })
+                .catch(err => {
+                    toast.error(err.message);
+                });
+        }
     }
 
     if (isLoading) {
         return <Spinner />
     }
     return (
-        <div>
-            <Table className="mx-auto text-center">
+        <div className='w-[90%] mx-auto'>
+            <h1 className='text-4xl text-center text-sky-500 font-bold py-6'>All Customers of Your Website</h1>
+            <Table className="mx-auto text-center text-gray-900 bg-gray-100 shadow-lg shadow-gray-700 rounded-lg">
                 <Thead>
-                    <Tr className="h-12 border border-gray-400 border-b-0 shadow-lg bg-gradient-to-r from-info to-secondary">
+                    <Tr className="h-12 border border-gray-400 border-b-0 shadow-lg bg-gradient-to-r from-sky-400 to-pink-400">
                         <Th>User Profile</Th>
                         <Th>User Name</Th>
                         <Th>Email</Th>
@@ -37,14 +54,16 @@ const AdminCustomers = () => {
                 {
                     users.map(user => <Tbody
                         key={user?._id}
-                        className="mx-auto text-center">
-                        <Td><img src={user?.photoURL} alt="userProfile" className='w-16 h-16 flex mx-auto' /></Td>
-                        <Td><p>{user?.displayName}</p></Td>
-                        <Td><p>{user?.email}</p></Td>
-                        <Td>{user?.phoneNumber}</Td>
-                        <Td><FaTrashAlt
-                            onClick={() => removeHandler(user?._id)}
-                            className='flex mx-auto' /></Td>
+                        className="items-center">
+                        <Tr>
+                            <Td><img src={user?.photoURL} alt="userProfile" className='w-16 h-16 flex mx-auto' /></Td>
+                            <Td><p className='text-center'>{user?.displayName}</p></Td>
+                            <Td><p className='text-center'>{user?.email}</p></Td>
+                            <Td><p className='text-center'>{user?.phoneNumber}</p></Td>
+                            <Td><FaTrashAlt
+                                onClick={() => removeHandler(user?._id)}
+                                className='flex mx-auto text-3xl p-1 text-pink-500 border-2 border-pink-500 hover:bg-pink-500 hover:text-gray-700 hover:border-gray-700 rounded-md mb-6 hover:scale-125 mt-4 duration-500' /></Td>
+                        </Tr>
                     </Tbody>)
                 }
             </Table>
