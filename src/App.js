@@ -6,10 +6,10 @@ import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 function App() {
   return (
-    <>
+    <div className='bg-gray-200'>
       <RouterProvider router={router} />
       <Toaster />
-    </>
+    </div>
   );
 }
 

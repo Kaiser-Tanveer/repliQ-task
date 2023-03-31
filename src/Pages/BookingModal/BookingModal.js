@@ -18,6 +18,7 @@ const BookingModal = ({ goods, setModalCondition }) => {
             img,
             email: user?.email,
             photoURL: user?.photoURL,
+            name: user?.displayName,
             productName: name,
             price,
             phone,
@@ -53,7 +54,7 @@ const BookingModal = ({ goods, setModalCondition }) => {
                         <div className="text-center">
                             <p className="text-xl font-semibold">{name}</p>
                             <img src={img} alt="" className="w-2/3 mx-auto my-2" />
-                            <p className="text-orange-500">Total Price: {price}</p>
+                            <p className="text-pink-500">Total Price: {price}</p>
                         </div>
                         <div>
                             <div className="form-control">
@@ -77,7 +78,7 @@ const BookingModal = ({ goods, setModalCondition }) => {
                             <div className="modal-action mt-14">
                                 {
                                     user ?
-                                        <input htmlFor="booking-modal" type="submit" value='Add to Cart' className="uppercase rounded-md w-full bg-gradient-to-r from-info to-error py-3 font-semibold border border-gray-500 hover:scale-y-110 hover:text-gray-100" />
+                                        <input htmlFor="booking-modal" type="submit" value='Add to Cart' className="uppercase rounded-md w-full bg-gradient-to-r from-info to-pink-500 py-3 font-semibold border border-gray-500 hover:scale-y-110 hover:text-gray-100 duration-500" />
                                         :
                                         <>
                                             <input htmlFor="booking-modal" type="submit" value='Login to Continue' className="uppercase btn btn-disabled w-full" />

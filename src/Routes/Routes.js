@@ -7,6 +7,9 @@ import Register from "../Pages/LogIn/Register";
 import ProductDetails from "../Pages/Products/ProductDetails";
 import Products from "../Pages/Products/Products";
 import Shop from "../Pages/Shop/Shop";
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import AdminCustomers from "../Pages/Dashboard/AdminCustomers";
+import AdminOrders from "../Pages/Dashboard/AdminOrders";
 
 const router = createBrowserRouter([
     {
@@ -36,6 +39,20 @@ const router = createBrowserRouter([
             {
                 path: '/cart',
                 element: <Cart />
+            },
+            {
+                path: '/dashboard',
+                element: <Dashboard />,
+                children: [
+                    {
+                        path: '/dashboard',
+                        element: <AdminCustomers />
+                    },
+                    {
+                        path: '/dashboard/orders',
+                        element: <AdminOrders />
+                    },
+                ]
             },
             {
                 path: '/logIn',

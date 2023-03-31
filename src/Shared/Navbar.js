@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { HiMenu, HiOutlineHome, HiOutlineShoppingCart } from 'react-icons/hi';
+import { HiMenu, HiOutlineHome, HiOutlineShoppingCart, HiOutlineViewList } from 'react-icons/hi';
 import { AuthContext } from '../Contexts/AuthContext/AuthProvider';
+import { FaShopify } from 'react-icons/fa';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -21,10 +22,13 @@ const Navbar = () => {
         }><HiOutlineHome className='lg:hidden' /><span className='ml-2'>Home</span></NavLink></li>
         <li><NavLink to='/shop' className={({ isActive }) =>
             isActive ? 'flex rounded-md bg-info items-center text-xl m-2 lg:text-base' : undefined
-        }><HiOutlineHome className='lg:hidden' /><span className='ml-2'>Shop</span></NavLink></li>
+        }><FaShopify className='lg:hidden' /><span className='ml-2'>Shop</span></NavLink></li>
         <li><NavLink to='/cart' className={({ isActive }) =>
             isActive ? 'flex rounded-md bg-info items-center text-xl m-2 lg:text-base' : undefined
         }><HiOutlineShoppingCart className='lg:hidden' /><span className='ml-2'>Cart</span></NavLink></li>
+        <li><NavLink to='/dashboard' className={({ isActive }) =>
+            isActive ? 'flex rounded-md bg-info items-center text-xl m-2 lg:text-base' : undefined
+        }><HiOutlineViewList className='lg:hidden' /><span className='ml-2'>Dashboard</span></NavLink></li>
     </>
     return (
         <div className="navbar fixed top-0 glass p-0 pr-5 mx-auto shadow-lg z-50">
