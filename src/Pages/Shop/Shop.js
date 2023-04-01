@@ -2,8 +2,10 @@ import React from 'react';
 import { Link, useLoaderData, useNavigation } from 'react-router-dom';
 import Spinner from '../../Shared/Spinner/Spinner';
 import { FaInfo } from 'react-icons/fa';
+import useTitle from '../../Components/MyHooks/useTitle';
 
 const Shop = () => {
+    useTitle('Shop');
     const navigation = useNavigation();
     const products = useLoaderData([]);
 

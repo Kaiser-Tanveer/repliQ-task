@@ -3,12 +3,14 @@ import React from 'react';
 import Spinner from '../../Shared/Spinner/Spinner';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
+import useTitle from '../../Components/MyHooks/useTitle';
 
 const AdminOrders = () => {
+    useTitle('All Orders');
     const { isLoading, refetch, data: orders = [] } = useQuery({
         queryKey: ["orders"],
         queryFn: async () => {
-            const res = fetch("http://localhost:5000/dashboard/orders");
+            const res = fetch("https://repli-q-task-server.vercel.app/dashboard/orders");
             const data = (await res).json();
             return data;
         }
@@ -18,7 +20,7 @@ const AdminOrders = () => {
     const removeHandler = id => {
         const proceed = window.confirm('Sure to delete this card!!!');
         if (proceed) {
-            fetch(`http://localhost:5000/dashboard/orders?id=${id}`, {
+            fetch(`https://repli-q-task-server.vercel.app/dashboard/orders?id=${id}`, {
                 method: 'DELETE'
             })
                 .then(data => {
@@ -37,7 +39,8 @@ const AdminOrders = () => {
         return <Spinner />
     }
     return (
-        <div className='w-5/6 mx-auto mt-20'>
+        <div className='w-5/6 mx-auto'>
+            <h1 className='text-4xl text-center text-pink-500 font-bold py-6'>All <span className='text-sky-500'>Orders</span> of Your Website</h1>
             {
                 orders?.map(order => <div
                     className='w-full md:flex mb-10 bg-pink-500 bg-opacity-80 shadow-lg shadow-gray-700 rounded-lg relative'
@@ -62,6 +65,7 @@ const AdminOrders = () => {
                         </div>
                         <div className='w-[90%] md:w-[60%] mx-auto mt-2 pt-2 border-t border-sky-500'>
                             <p><span className='font-bold'>Email</span>: {order?.email}</p>
+                            <p><span className='font-bold'>Location</span>: {order?.location}</p>
                             <p><span className='font-bold'>Message</span>: {order?.msg}</p>
                         </div>
                         <div className='w-[60%] mx-auto pb-4 md:pb-0'>

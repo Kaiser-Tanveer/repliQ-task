@@ -13,7 +13,7 @@ const BannerSlider = () => {
                 </Zoom>
             </div>
             <div className='absolute left-1/4 md:left-1/2 top-2/3 z-30'>
-                <Link to="/logIn" className='btn text-gray-100 bg-pink-400 hover:bg-pink-600 font-semibold border border-white hover:scale-110 shadow-lg'>CONTINUE <HiOutlineLogin className='text-xl ml-2' /> </Link>
+                <Link to="/shop" className='btn text-gray-100 bg-pink-400 hover:bg-pink-600 font-semibold border border-white hover:scale-110 shadow-lg'>VISIT SHOP <HiOutlineLogin className='text-xl ml-2' /> </Link>
             </div>
             <div className='rounded-b-lg bg-pink-400 grid grid-cols-1 md:grid-cols-2 h-80 md:h-full' style={{
                 clipPath: 'polygon(0 0, 100% calc(80% - 100vw), calc(85% - 50vw) 100%, 0 100%)'

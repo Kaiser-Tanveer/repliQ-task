@@ -10,6 +10,7 @@ import Shop from "../Pages/Shop/Shop";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import AdminCustomers from "../Pages/Dashboard/AdminCustomers";
 import AdminOrders from "../Pages/Dashboard/AdminOrders";
+import AddProduct from "../Pages/Dashboard/AddProduct";
 
 const router = createBrowserRouter([
     {
@@ -19,22 +20,22 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
-                loader: async () => await fetch("http://localhost:5000/categories")
+                loader: async () => await fetch("https://repli-q-task-server.vercel.app/categories")
             },
             {
                 path: '/products/:name',
                 element: <Products />,
-                loader: async ({ params }) => await fetch(`http://localhost:5000/products/${params.name}`)
+                loader: async ({ params }) => await fetch(`https://repli-q-task-server.vercel.app/products/${params.name}`)
             },
             {
                 path: '/product/:id',
                 element: <ProductDetails />,
-                loader: async ({ params }) => await fetch(`http://localhost:5000/product/${params.id}`)
+                loader: async ({ params }) => await fetch(`https://repli-q-task-server.vercel.app/product/${params.id}`)
             },
             {
                 path: '/shop',
                 element: <Shop />,
-                loader: async () => await fetch('http://localhost:5000/shop')
+                loader: async () => await fetch('https://repli-q-task-server.vercel.app/shop')
             },
             {
                 path: '/cart',
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
                     {
                         path: '/dashboard/orders',
                         element: <AdminOrders />
+                    },
+                    {
+                        path: '/dashboard/addProduct',
+                        element: <AddProduct />
                     },
                 ]
             },

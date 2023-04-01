@@ -4,12 +4,14 @@ import Spinner from '../../Shared/Spinner/Spinner';
 import { Table, Tbody, Td, Th, Thead, Tr } from 'react-super-responsive-table';
 import { FaTrashAlt } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
+import useTitle from '../../Components/MyHooks/useTitle';
 
 const AdminCustomers = () => {
+    useTitle('All Users');
     const { isLoading, refetch, data: users = [] } = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
-            const res = fetch("http://localhost:5000/dashboard/users");
+            const res = fetch("https://repli-q-task-server.vercel.app/dashboard/users");
             const data = (await res).json();
             return data;
         }
@@ -19,7 +21,7 @@ const AdminCustomers = () => {
     const removeHandler = id => {
         const proceed = window.confirm('Sure to delete this User!!!');
         if (proceed) {
-            fetch(`http://localhost:5000/dashboard/users?id=${id}`, {
+            fetch(`https://repli-q-task-server.vercel.app/dashboard/users?id=${id}`, {
                 method: 'DELETE'
             })
                 .then(data => {
@@ -40,7 +42,7 @@ const AdminCustomers = () => {
     }
     return (
         <div className='w-[90%] mx-auto'>
-            <h1 className='text-4xl text-center text-sky-500 font-bold py-6'>All Customers of Your Website</h1>
+            <h1 className='text-4xl text-center text-sky-500 font-bold py-6'>All <span className='text-pink-500'>Customers</span> of Your Website</h1>
             <Table className="mx-auto text-center text-gray-900 bg-gray-100 shadow-lg shadow-gray-700 rounded-lg">
                 <Thead>
                     <Tr className="h-12 border border-gray-400 border-b-0 shadow-lg bg-gradient-to-r from-sky-400 to-pink-400">
@@ -54,7 +56,7 @@ const AdminCustomers = () => {
                 {
                     users.map(user => <Tbody
                         key={user?._id}
-                        className="items-center">
+                        className="items-center py-6">
                         <Tr>
                             <Td><img src={user?.photoURL} alt="userProfile" className='w-16 h-16 flex mx-auto' /></Td>
                             <Td><p className='text-center'>{user?.displayName}</p></Td>

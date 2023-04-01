@@ -4,7 +4,7 @@ import { MagnifyingGlass } from 'react-loader-spinner';
 const Spinner = () => {
     return (
         <div className='h-[100vh] mt-[40vh]'>
-            <h1 className='text-8xl text-center text-transparent animate-pulse bg-gradient-to-r bg-clip-text from-[#e15b64] to-[#c0efff] font-bold'>T-Task</h1>
+            <h1 className='text-8xl text-center text-transparent animate-pulse bg-gradient-to-r bg-clip-text from-[#e15b64] to-[#0cc2ff] font-bold'>RepliQ-Task</h1>
             <div className='flex mx-auto justify-center'>
                 <MagnifyingGlass
                     visible={true}

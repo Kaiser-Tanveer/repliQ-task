@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthContext/AuthProvider';
 
 const BookingModal = ({ goods, setModalCondition }) => {
@@ -13,11 +13,13 @@ const BookingModal = ({ goods, setModalCondition }) => {
         const form = e.target;
         const phone = form.phone.value;
         const msg = form.msg.value;
+        const location = form.location.value;
 
         const bookingData = {
             img,
             email: user?.email,
             photoURL: user?.photoURL,
+            location: location,
             name: user?.displayName,
             productName: name,
             price,
@@ -26,7 +28,7 @@ const BookingModal = ({ goods, setModalCondition }) => {
         }
         console.log(bookingData);
 
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://repli-q-task-server.vercel.app/bookings', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

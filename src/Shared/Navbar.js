@@ -3,10 +3,11 @@ import { Link, NavLink } from 'react-router-dom';
 import { HiMenu, HiOutlineHome, HiOutlineShoppingCart, HiOutlineViewList } from 'react-icons/hi';
 import { AuthContext } from '../Contexts/AuthContext/AuthProvider';
 import { FaShopify } from 'react-icons/fa';
+import useAdmin from '../Components/MyHooks/useAdmin';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-    console.log(user);
+    // const [isAdmin] = useAdmin(user?.email);
 
     // Logout Handler 
     const signOutHandler = () => {
@@ -26,9 +27,12 @@ const Navbar = () => {
         <li><NavLink to='/cart' className={({ isActive }) =>
             isActive ? 'flex rounded-md bg-info items-center text-xl m-2 lg:text-base' : undefined
         }><HiOutlineShoppingCart className='lg:hidden' /><span className='ml-2'>Cart</span></NavLink></li>
+        {/* {
+            isAdmin && */}
         <li><NavLink to='/dashboard' className={({ isActive }) =>
             isActive ? 'flex rounded-md bg-info items-center text-xl m-2 lg:text-base' : undefined
         }><HiOutlineViewList className='lg:hidden' /><span className='ml-2'>Dashboard</span></NavLink></li>
+        {/* } */}
     </>
     return (
         <div className="navbar fixed top-0 glass p-0 pr-5 mx-auto shadow-lg z-50">

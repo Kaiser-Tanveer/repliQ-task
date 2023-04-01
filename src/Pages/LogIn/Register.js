@@ -5,8 +5,11 @@ import { Zoom } from 'react-reveal';
 import { FaUserCircle } from 'react-icons/fa';
 import { AuthContext } from '../../Contexts/AuthContext/AuthProvider';
 import { toast } from 'react-hot-toast';
+import useTitle from '../../Components/MyHooks/useTitle';
+import setAuthToken from '../../Components/setAuthToken/setAuthToken';
 
 const Register = () => {
+    useTitle('Register');
     const { createUser, updateUser } = useContext(AuthContext);
     const [err, setErr] = useState('');
     const navigate = useNavigate();
@@ -20,7 +23,7 @@ const Register = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                setAuthToken(user);
                 const image = data.img[0];
                 const formData = new FormData();
                 formData.append('image', image);
@@ -44,7 +47,7 @@ const Register = () => {
                                     console.log(userInfo);
 
                                     // Storing user on DB 
-                                    fetch('http://localhost:5000/users', {
+                                    fetch('https://repli-q-task-server.vercel.app/users', {
                                         method: 'POST',
                                         headers: {
                                             'Content-type': 'application/json'
@@ -129,7 +132,7 @@ const Register = () => {
                                 !disable ?
                                     "flex w-full items-center justify-center h-12 px-6 text-sm font-semibold rounded text-gray-800 btn-disabled"
                                     :
-                                    "flex w-full items-center justify-center h-12 px-6 text-sm font-semibold rounded bg-error text-gray-800 uppercase"
+                                    "flex w-full items-center justify-center h-12 px-6 text-sm font-semibold rounded bg-pink-400 text-gray-800 uppercase"
                             } >Register</button>
                         </div>
                         <div className="flex justify-center mt-6 space-x-2 text-xs">
