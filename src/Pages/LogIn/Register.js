@@ -43,6 +43,7 @@ const Register = () => {
                                         email: data.email,
                                         photoURL: userImg,
                                         phoneNumber: data.phone,
+                                        role: ''
                                     }
                                     console.log(userInfo);
 
@@ -136,7 +137,7 @@ const Register = () => {
                             } >Register</button>
                         </div>
                         <div className="flex justify-center mt-6 space-x-2 text-xs">
-                            <p className="text-gray-600">Already have an account? Please <Link className='link-hover' to='/logIn'>Login</Link></p>
+                            <p className="text-gray-600 text-[16px]">Already have an account? Please <Link className='link-hover font-semibold text-gray-900' to='/logIn'>Login</Link></p>
                         </div>
                     </form>
                 </div>

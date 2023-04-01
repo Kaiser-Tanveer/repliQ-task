@@ -3,8 +3,8 @@ import { MagnifyingGlass } from 'react-loader-spinner';
 
 const Spinner = () => {
     return (
-        <div className='h-[100vh] mt-[40vh]'>
-            <h1 className='text-8xl text-center text-transparent animate-pulse bg-gradient-to-r bg-clip-text from-[#e15b64] to-[#0cc2ff] font-bold'>RepliQ-Task</h1>
+        <div className='h-[100vh] pt-[40vh]'>
+            <h1 className='text-8xl text-center text-transparent animate-pulse bg-gradient-to-r bg-clip-text from-pink-500 to-sky-500 font-bold'>RepliQ-Task</h1>
             <div className='flex mx-auto justify-center'>
                 <MagnifyingGlass
                     visible={true}
@@ -13,8 +13,8 @@ const Spinner = () => {
                     ariaLabel="MagnifyingGlass-loading"
                     wrapperStyle={{}}
                     wrapperClass="MagnifyingGlass-wrapper"
-                    glassColor='#c0efff'
-                    color='#e15b64'
+                    glassColor='#4dd0fb'
+                    color='#ec4899 '
                 />
             </div>
         </div>
